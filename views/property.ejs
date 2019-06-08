@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title><%=propertyData.PropertyName%></title>
+    <link rel="icon" href="/images/favicon.png" type="image/jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <meta property="og:title" content="<%=propertyData.PropertyName%>">
+    <!-- <meta property="og:description" content="Currently it uses the property description, that is ok"> -->
+    <!-- <meta property="og:image" content="a link to the main thumbnail of the property in the DB (also used in the results thumbnails"> -->
+    <meta property="og:url" content="http://test.navigaze.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Navigaze">
+
+    <!-- Bootstrap Core CSS -->
+    <link  href="http://dev.navigaze.com/vendor/bootstrap/css/bootstrap_v3_min.css" rel="stylesheet">
+    <!--  <link  href="http://dev.navigaze.com/vendor/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+
+    <!-- Custom Fonts -->
+    <link href="http://dev.navigaze.com/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> -->
+
+    <!-- Theme CSS -->
+    <link href="css/grayscale1.min.css" rel="stylesheet">
+
+    <!--  <link href="/stylesheets/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <!--  <link href="/stylesheets/signin.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="/css/normalize.min.css">
+    <link rel="stylesheet" href="/css/main.min.css">
+    <link rel="stylesheet" href="/css/property_css.css">
+
+    <!-- <link type="text/css" rel="stylesheet" href="stylesheets/lightslider.min1.css" /> -->
+    <link type="text/css" rel="stylesheet" href="stylesheets/prettify.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/jquery.bxslider.css">
+    <link rel="stylesheet" href="http://dev.navigaze.com/vendor/jquery_UI/jquery-ui_MIN.css">
+    <!--  *********  GOOGLE ANALYTICS -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113092876-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-113092876-2');
+    </script>
+    <!-- *********** END GOOGLE AALYTICS -->
+  </head>
+  <body  id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div id="" class="none33 landscaperestrict">
+      <div align="center">
+        <img style="width: 162px; height: auto;" src="/images/Landscape_restrict1.png">
+      </div>
+      <div style="text-align: center; color: #00FFFF !important">
+        <h4 style="font-size: 18px !important; margin: 7px !important;">Please rotate your device</h4>
+        <p style="font-size: 14px !important;">Please go back to portrait mode for the best experience</p>
+      </div>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-4">
+            <div id="logo">
+              <a href="/">
+                 <img src="img/navigaze-logo.png" alt="home" style="max-width:40%;" align="left" />
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-8" style="text-align:right">
+            <a href="/listyourproperty" target="_blank" rel="noopener">Contact Us Now</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Intro Header -->
+    <section id="property" class="intro">
+      <div id="divProperty" class="intro-body">
+        <div id="virtual_tour_text_div"><h2 class="virtual_text_heading blink_me">Click to Navigaze</h2></div>
+        <iframe src="<%= propertyData.VRUrl %>" class="propifrmheader" scrolling="no" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div id="divNeighbourhood" class="intro-body"></div>
+      <div id="divMap" class="intro-body propheaderbodymap"></div>
+      <div id="divfrv" class="intro-body propheaderbodymap"  style="display: none;">
+        <!-- <img id="divfrvimg" src="<%= propertyData.VRFrontThumbnail %>"> -->
+        <% include bootstratpslider.html %>
+      </div>
+      <div class="sidebars hide-container">
+        <div class="sidebar left background navbgs newlightsliderbarside">
+          <ul class="nav nav-tabs nav-justified navmargin" style="margin-bottom: 10px;">
+            <li class="nav-item active">
+            <a class="nav-link btn tglbasic" data-toggle="tab" href="#panel1" role="tab">Views</a>
+            </li>
+            <li class="nav-item tab-line">
+            <!--a class="nav-link btn" data-toggle="tab" href="#panel2" role="tab" style="color:#00FFFF">Properties</a-->
+            </li>
+          </ul>
+          <div id="bqxslider-vertical">
+            <div class="bxslider list-group background111">
+              <div  class="slide background">
+                <a id="aInterior" href="#" style="position:relative;top:-5px">
+                  <span class="qap-text">Virtual Tour</span>
+                  <!--    <div class="abc">
+                  <span class="qap-text">INTERIOR<br>View</span>
+                  </div> -->
+                  <img class="slideimgprop1 img-responsive"  src="<%= propertyData.VRInteriorThumbnail %>" alt="" />
+                </a>
+                <!--div class="view overlay hm-white-slight">
+                <iframe src="https://my.matterport.com/show/?m=hyBUCKCNw17&play=0&qs=1" scrolling="no" frameborder="0" style="position: relative; width: 100%; width: 100%;"
+                allowfullscreen></iframe>
+                <a class="button-property" href="#" target="_blank" id="aa" class="btn btn-primary" data-action="toggle" data-side="left"><span></span></a>
+                </div>-->
+              </div>
+              <div id="liNeighbourhood" class="slide background" >
+                <a id="aNeighbourhood" data-id="" href="#" style="position:relative;top:-5px">
+                  <span class="qap-text">Neighbourhood View</span>
+                  <img class="slideimgprop1 img-responsive" src="<%= propertyData.VRNeighbourhoodThumbnailSmall %>" alt="" />
+                </a>
+              </div>
+              <div id="liMap" class="slide background" style="padding-top: 5px;" >
+                <a id="aMap" href="#" style="position:relative;top:-5px">
+                  <span class="qap-text" style="padding-bottom: 3px;">Map View</span>
+                  <!--  <img src="<%= propertyData.VRMapThumbnail %>" alt="" /> -->
+                  <!-- <iframe src="<%= propertyData.VRMapThumbnail %>" width="178" height="149" frameborder="0" style="border:0;" allowfullscreen></iframe> -->
+                  <div class="slideimgprop1 img-responsive divmapme" id="divMap2"></div>
+                </a>
+              </div>
+              <div id="lifrv" class="slide background" style="margin-top: 10px;" >
+                <a id="afrv" href="#" style="position:relative;top:-5px">
+                  <span class="qap-text">Photo & Video</span>
+                  <!--     <img class="slideimgprop1 img-responsive" style="width: 158px; height: 100px; margin: 0 auto;" src="<%= propertyData.VRFrontThumbnail[0] %>" alt="" /> -->
+                  <img class="slideimgprop1 img-responsive" src="<%= propertyData.AllImageThumbnail %>" alt="" />
+                </a>
+              </div>
+
+            </div>
+          </div>
+          <!-- <ul id="lightSlider" class="list-group vslider"></ul> -->
+          <div id="aSideBar" data-action="toggle" data-side="left"  class="sidebar-button background asidebarcusrson">
+            <i class="fa bounceX aSideBar11 "> </i>
+          </div>
+          <div class="arrow_box123 bounce">Views</div>
+        </div>
+        <!-- RIght Side Bar -->
+        <div class="sidebar right background sdbrwdth" style="right: 0px !important;">
+          <ul class="nav nav-tabs nav-justified navmargin" style="margin-bottom: 10px;">
+            <li class="nav-item active">
+                <a class="nav-link btn tglbasic" data-toggle="tab" href="#panel1" role="tab">Info</a>
+            </li>
+            <li class="nav-item tab-line">
+                <!--a class="nav-link btn" data-toggle="tab" href="#panel2" role="tab" style="color:#00FFFF">Properties</a-->
+            </li>
+          </ul>
+          <!-- ~~~~~ ****** !!~~~ SIDEBAR BUTTONS for Mobile ONLY ~~~~~  !!! *** -->
+          <div class="mobilesidebar">
+            <!-- ## Inside CONTENT ## -->
+            <div id="accordion">
+              <!-- Summary -->
+              <h3>Summary</h3>
+              <div>
+                <div class="row" style="color: #fff !important">
+                  <div class="col-md-4 col-xs-4 col-sm-4 navigaze-icon">
+                    <i class="fa fa-home dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                    <div class="glyphicon-class crdimgicn11" style="color: #fff !important">Area</div>
+                    <div class="glyphicon-class crdimgclsicn92 areaDiv" style="color: #fff !important">
+                      &nbsp;<div class="areaUnit"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 col-xs-4 col-sm-4 navigaze-icon">
+                    <i class="fa fa-user dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                    <div class="glyphicon-class crdimgicn11" style="color: #fff !important">Sleeps</div>
+                    <div class="glyphicon-class crdimgclrblk" style="color: #fff !important"><%=propertyData.Sleeps%></div>
+                  </div>
+
+                  <div class="col-md-4 col-xs-4 col-sm-4 navigaze-icon">
+                    <i class="fa fa-bed dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                    <div class="glyphicon-class crdimgicn11" style="color: #fff !important">Bedrooms</div>
+                    <div class="glyphicon-class crdimgclrblk" style="color: #fff !important"><%=propertyData.Bedrooms%></div>
+                  </div>
+                </div>
+
+                <div class="row" style="color: #fff !important">
+
+                  <div class="col-md-4 col-xs-4 col-sm-4 navigaze-icon">
+                    <i class="fa fa-bath dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                    <div class="glyphicon-class crdimgicn11" style="color: #fff !important">Bathrooms</div>
+                    <div class="glyphicon-class crdimgclrblk" style="color: #fff !important"><%=propertyData.Bathrooms%></div>
+                  </div>
+
+
+                  <div class="col-md-4 col-xs-4 col-sm-4 navigaze-icon">
+                    <i class="fa fa-adjust dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                    <div class="glyphicon-class dnlsecicndiv" style="color: #fff !important">Min Stay</div>
+                    <div class="glyphicon-class crdimgclrblk minstayDiv" style="color: #fff !important"> nights</div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- !Summary -->
+              <!-- Description -->
+              <h3>Description</h3>
+              <div>
+                <div class="row">
+                  <div class="col-md-12 p-cl12-padding">
+                    <h5 class="p-cl12-unitsh6 whitem3"><span class="fromshowdt" style="display: none;">From&nbsp;</span><i class="whitem3 fa <%=propertyData.priceId.unit%>   dnlseciunit dnlseci" aria-hidden="true" style="font-size: 0.8em !important;"></i> <b class="PriceUnit" ></b></h5>
+                    <h6 class="p-cl12-unitsh6 whitem3 pernightNA"> per night</h6>
+
+                    <p class="whitem3 bestpricehide">Best Price: <b class="sourcesitval whitem3"></b></p>
+                    <h6></h6>
+                    <div class="totalpriceprop" style="display: none;">
+                      <h5 class="p-cl12-unitsh6 whitem3"><i class="whitem3 fa <%=propertyData.priceId.unit%>   dnlseciunit dnlseci" aria-hidden="true" style="font-size: 0.8em !important;"></i> <b class="totalpriceproppnight"></b></h5>
+                      <h6 class="p-cl12-unitsh6 whitem3"> in total for <b class="totalsdays"></b>&nbsp;nights</h6>
+                      <h6></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <p class="p-cl2-para1 whitem3"><%=propertyData.Description%></p>
+                  </div>
+                </div>
+              </div>
+              <!-- !Description -->
+              <!-- Amenities -->
+              <h3>Amenities</h3>
+              <div>
+                <div class="row">
+                <%
+                  if(selectedAmenitiesData) {
+                    var itr = selectedAmenitiesData.length;
+                    for(i=0;i< itr; i++) {
+                %>
+                  <div class="col-md-4 col-xs-4 col-sm-4 amenities-icon navigaze-icon">
+                    <i class="fa <%= selectedAmenitiesData[i].IconURL%> dnlseci whitem3" aria-hidden="true"></i>
+                    <div class="glyphicon-class dnlsecicndiv whitem3"><%= selectedAmenitiesData[i].Name %></div>
+                  </div>
+                <%
+                    }
+                  }
+                %>
+                </div>
+              </div>
+              <!-- Amenities -->
+              <!-- Rules -->
+              <h3>Rules</h3>
+              <div>
+                <div class="row">
+                  <div class="col-md-12">
+                  <%
+                    if(houseRule.length) {
+                      for(i=0;i< houseRule.length;i++) {
+                  %>
+                    <p class="p-cl2-para1 whitem3"><%= houseRule[i].Description %></p>
+                  <%
+                      }
+                    }
+                  %>
+                  </div>
+                </div>
+              </div>
+              <!-- !Rules -->
+              <!-- Policies -->
+              <h3>Policies</h3>
+              <div>
+                <div class="row">
+                  <div class="col-md-12">
+                  <%
+                    if(cancelpolicies.length) {
+                      for(var i=0;i< cancelpolicies.length;i++) {
+                  %>
+                    <p class="p-cl2-para1 whitem3"><%=cancelpolicies[i].Description%></p>
+                  <%
+                      }
+                    }
+                  %>
+                  </div>
+                </div>
+              </div>
+              <!-- Policies  -->
+            </div>
+            <!-- ##   ! ENd Inside Content -->
+          </div>
+          <!-- ~~~~~ ****** !!~~~ SIDEBAR BUTTONS for Mobile ONLY ~~~~~  !!! *** -->
+          <!--  ============= ##########  BUTTONS #########  -->
+
+          <!-- ~~~~~ ****** !!~~~ SIDEBAR BUTTONS for DESKTOP ONLY ~~~~~  !!! *** -->
+          <div style="" class="desktopsidebar">
+            <!-- **** BUttons *** -->
+            <!-- Summary -->
+            <div class="summary_button">
+              <!--  <div class="button_base b06_3d_swap sidebtnmarginbottom">
+              <div class="sidebuttoninsidepaddings">Summary</div>
+              <div class="sidebuttoninsidepaddings">View More</div>
+              </div> -->
+              <div class="button_heading">
+                <h4 class="panel-title">
+                  <a class="tglbasic">Summary</a>
+                </h4>
+              </div>
+            </div>
+            <!-- SUMMARY HOVER -->
+            <div class="arrow_box_popforbtn arrow_box_popforbtn12 arrow_box_popforbtn_s arrow_box_popforbtn_summary summary_pop" style="color: #fff !important; width: 150%;">
+              <button type="button" class="close closem3Arrow">×</button>
+              <div class="row" style="color: #fff !important">
+                <div class="col-md-4 col-xs-4 col-sm-4">
+                  <i class="fa fa-home dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                  <div class="glyphicon-class crdimgicn11" style="color: #fff !important">Area</div>
+                  <div class="glyphicon-class crdimgclsicn92 areaDiv" style="color: #fff !important"> &nbsp;<div class="areaUnit"></div></div>
+                </div>
+                <div class="col-md-4 col-xs-4 col-sm-4">
+                  <i class="fa fa-user dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                  <div class="glyphicon-class crdimgicn11" style="color: #fff !important">Sleeps</div>
+                  <div class="glyphicon-class crdimgclrblk" style="color: #fff !important"><%=propertyData.Sleeps%></div>
+                </div>
+                <div class="col-md-4 col-xs-4 col-sm-4">
+                  <i class="fa fa-bed dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                  <div class="glyphicon-class crdimgicn11" style="color: #fff !important">Bedrooms</div>
+                  <div class="glyphicon-class crdimgclrblk" style="color: #fff !important"><%=propertyData.Bedrooms%></div>
+                </div>
+              </div>
+              <div class="row" style="color: #fff !important">
+                <div class="col-md-4 col-xs-4 col-sm-4">
+                  <i class="fa fa-bath dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                  <div class="glyphicon-class crdimgicn11" style="color: #fff !important">Bathrooms</div>
+                  <div class="glyphicon-class crdimgclrblk" style="color: #fff !important"><%=propertyData.Bathrooms%></div>
+                </div>
+                <!--    <div class="col-md-4 col-xs-4 col-sm-4">
+                <img  class="p-halfbathsvgimg" src="img/prop-half-bath.svg" style="color: #fff !important;height: 54px;">
+                <div class="glyphicon-class p-halbathglficn" style="color: #fff !important;">Half-Baths</div>
+                <div class="glyphicon-class crdimgclrblk" style="color: #fff !important"><%=propertyData.HalfBaths%></div>
+                </div> -->
+                <div class="col-md-4 col-xs-4 col-sm-4">
+                  <i class="fa fa-adjust dnlseci" aria-hidden="true" style="color: #fff !important"></i>
+                  <div class="glyphicon-class dnlsecicndiv" style="color: #fff !important">Min Stay</div>
+                  <div class="glyphicon-class crdimgclrblk minstayDiv" style="color: #fff !important"> nights</div>
+                </div>
+              </div>
+            </div>
+            <!-- !Summary hover -->
+            <!-- ! Summary -->
+            <!-- Desctiption -->
+            <div class="description_button">
+              <!-- <div class="button_base b06_3d_swap sidebtnmarginbottom">
+              <div class="sidebuttoninsidepaddings">Description</div>
+              <div class="sidebuttoninsidepaddings">View More</div>
+              </div> -->
+              <div class="button_heading">
+                <h4 class="panel-title">
+                  <a class="tglbasic">Description</a>
+                </h4>
+              </div>
+              <div class="arrow_box_popforbtn arrow_box_popforbtn12  arrow_box_popforbtn_N arrow_box_popforbtn_description description_pop">
+                <button type="button" class="close closem3Arrow">×</button>
+                <!-- des dynamic -->
+                <div class="row">
+                  <div class="col-md-12 p-cl12-padding">
+                    <h5 class="p-cl12-unitsh6 whitem3"><span class="fromshowdt">From&nbsp;</span><i class="whitem3 fa <%=propertyData.priceId.unit%>   dnlseciunit dnlseci" aria-hidden="true" style="font-size: 0.8em !important;"></i> <b class="PriceUnit"></b></h5>
+                    <h6 class="p-cl12-unitsh6 whitem3 pernightNA"> per night</h6>
+                    <p class="whitem3 bestpricehide">Best Price: <b class="sourcesitval whitem3"></b></p>
+                    <h6> </h6>
+                    <div class="totalpriceprop" style="display: none;">
+                      <h5 class="p-cl12-unitsh6 whitem3"><i class="whitem3 fa <%=propertyData.priceId.unit%>   dnlseciunit dnlseci" aria-hidden="true" style="font-size: 0.8em !important;"></i> <b class="totalpriceproppnight"></b></h5>
+                      <h6 class="p-cl12-unitsh6 whitem3"> in total for <b class="totalsdays"></b>&nbsp;nights</h6>
+                      <h6> </h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <p class="p-cl2-para1 whitem3"><%=propertyData.Description%></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ! Description -->
+            <!-- Availability -->
+            <!--  <div class="availibility_button">
+            <div class="button_base b06_3d_swap sidebtnmarginbottom">
+            <div class="sidebuttoninsidepaddings">Availability</div>
+            <div class="sidebuttoninsidepaddings">Check</div>
+            </div> -->
+            <!--    <div class="button_heading">
+            <h4 class="panel-title">
+            <a class="tglbasic">Availability</a>
+            </h4>
+            </div>
+            </div>
+            -->
+            <!-- HOVER -->
+            <!-- <div class="arrow_box_popforbtn arrow_box_popforbtn12 arrow_box_popforbtn_av arrow_box_popforbtn_avail availibility_btn_pop">
+            <button type="button" class="close closem3Arrow">×</button>
+            <div class="demo">
+            <input id="date-range12" size="40" value="" style="color: #000;"><br>
+            <div id="date-range12-container" style="width:456px;"></div>
+            </div>
+            </div>  -->
+            <!-- ! Availability -->
+            <!-- Amenities -->
+            <div class="aminitities_button">
+            <!--    <div class="button_base b06_3d_swap sidebtnmarginbottom">
+            <div class="sidebuttoninsidepaddings">Amenities</div>
+            <div class="sidebuttoninsidepaddings">
+            <p  class="" data-toggle="modal" data-target="#myModalcntc12">
+            See More !
+            </p>
+            </div>
+            </div>
+            -->
+              <div class="button_heading" style="cursor: pointer;">
+                <h4 class="panel-title">
+                  <a data-toggle="modal" data-target="#myModalcntc12" class="tglbasic">Amenities</a>
+                </h4>
+              </div>
+            </div>
+            <!-- HOVER  -->
+            <div class="arrow_box_popforbtn arrow_box_popforbtn12 arrow_box_popforbtn_aminities aminitities_btn_pop arrow_box_popforbtn_am" style="width: 300px">
+              <button type="button" class="close closem3Arrow">×</button>
+              <!-- Aminities -->
+              <div class="row">
+              <%
+                if(selectedAmenitiesData){
+                  var itr = selectedAmenitiesData.length;
+                  for(i=0;i< itr; i++) {
+              %>
+                <div class="col-md-3 col-xs-3 col-sm-3">
+                  <i class="fa <%= selectedAmenitiesData[i].IconURL%> dnlseci whitem3" aria-hidden="true"></i>
+                  <div class="glyphicon-class dnlsecicndiv whitem3"><%=selectedAmenitiesData[i].Name%></div>
+                </div>
+              <%
+                  }
+                }
+              %>
+              </div>
+              <!-- end -->
+            </div>
+            <!-- ! Amenities -->
+            <!-- Rules -->
+            <div class="rules_button_pop">
+              <!-- <div class="button_base b06_3d_swap sidebtnmarginbottom">
+              <div class="sidebuttoninsidepaddings">Rules</div>
+              <div class="sidebuttoninsidepaddings">Check Rules</div>
+              </div> -->
+              <div class="button_heading">
+                <h4 class="panel-title">
+                  <a class="tglbasic">Rules</a>
+                </h4>
+              </div>
+            </div>
+            <!-- HOVER -->
+            <div class="arrow_box_popforbtn arrow_box_popforbtn13 arrow_box_popforbtn_rules h_rule_btn_pop arrow_box_popforbtn_rl">
+              <button type="button" class="close closem3Arrow">×</button>
+              <div class="row">
+                <div class="col-md-12">
+                <%
+                  if(houseRule.length) {
+                    for(i=0;i< houseRule.length;i++) {
+                %>
+                  <p class="p-cl2-para1 whitem3" style="height: 100px"><%= houseRule[i].Description%></p>
+                <%
+                    }
+                  }
+                %>
+                </div>
+              </div>
+            </div>
+            <!-- ! Rules -->
+            <!-- Cancellation Policy -->
+            <div class="cancel_P_button">
+              <!-- <div class="button_base b06_3d_swap sidebtnmarginbottom">
+              <div class="sidebuttoninsidepaddings">Policies</div>
+              <div class="sidebuttoninsidepaddings">View Policies</div>
+              </div>
+              -->
+              <div class="button_heading">
+                <h4 class="panel-title">
+                  <a class="tglbasic">Policies</a>
+                </h4>
+              </div>
+            </div>
+            <!-- HOVER -->
+            <div class="arrow_box_popforbtn arrow_box_popforbtn13 arrow_box_popforbtn_cancel cancel_policy_btn_pop arrow_box_popforbtn_cl">
+              <button type="button" class="close closem3Arrow">×</button>
+              <div class="row">
+                <div class="col-md-12">
+                <%
+                  if(cancelpolicies.length) {
+                    for(var i=0;i< cancelpolicies.length;i++) {
+                %>
+                  <p class="p-cl2-para1 whitem3" style="height: 100px"><%=cancelpolicies[i].Description%></p>
+                <%
+                    }
+                  }
+                %>
+                </div>
+              </div>
+            </div>
+            <!-- ! Cancellation Policy -->
+            <!-- Review -->
+            <!-- ! Review -->
+            <!-- ! Buttons  -->
+          </div>
+          <!-- ~~~~~ ****** @@ END @@ !!~~~ SIDEBAR BUTTONS for DESKTOP ONLY ~~~~~  !!! *** -->
+          <!-- !Right Side Bar -->
+          <div id="bSideBar" data-action="toggle" data-side="right"  class=" sidebar-right-button background asidebarcusrson">
+            <i class="fa bounceX1 bSideBar11 "> </i>
+          </div>
+          <div class="arrow_box1234 bounce">Info</div>
+        </div>
+      </div>
+
+          <!-- ==== BOOK NOW OVERLAY BUTTON === -->
+                  <div class="containerbookmebtn">
+                          <div class=""></div>
+                            <div id="booknowbtnprop" class="buttonbookm3 hide-container" data-toggle="modal" data-target="#myModalgetquote1"><a href="javascript:void(0)"> BOOK NOW </a></div>
+
+
+          <!-- ==============  VIEW DEAL BUTTON  ===========  -->
+            <div id="viewdealbtnprop" class="buttonbookm3 hide-container">
+              <a id="viewdeallinksource" href="" target="_blank">VIEW DEAL </a></div>
+
+          <!-- ==============  ! VIEW DEAL BUTTON  ==== -->
+
+                           <!-- <div class="" style="margin-top:18%;">
+                              <div class="button_base1 b03_skewed_slide_in" data-toggle="modal" data-target="#myModalgetquote1">
+                                  <div>BOOK NOW</div>
+                                  <div></div>
+                                  <div>BOOK NOW</div>
+                              </div>
+                          </div> -->
+                   </div>
+
+          <!--  === ! BOOK NOW OVERLAY BUTTON === -->
+    </section>
+    <div class="modal fade" id="myModalcntc12" role="dialog">
+
+    </div>
+    <!-- Here was the Details Section  -->
+    <!-- /************  Details Section was removed on the Date 7_may_2018_6pm ****/ -->
+    <!-- End Details Section -->
+    <!-- Footer -->
+    <!--    <footer>
+    <div class="container text-center">
+    <p>Copyright &copy; Your Website 2017</p>
+    </div>
+    </footer>-->
+    <!--<div id="cookiesWarning">
+    </div>-->
+    <!--  <div id="cookieConsent">
+    <div id="closeCookieConsent">x</div>
+    This website uses cookies to ensure you get the best experience on our website. <a href="#" target="_blank">More info</a>. <a class="cookieConsentOK">That's Fine</a>
+    </div> -->
+  <script>
+    function myari() {
+       $('#loader1').removeClass("loadershow");
+    }
+  </script>
+  <script type="text/javascript">
+     $(window).load(function() {
+   setTimeout(function() {
+
+          $("#virtual_tour_text_div").fadeOut(1500);
+
+      },5000);
+
+  $('#loader1').removeClass("loadershow");
+
+  });
+      </script>
+      <!--  -->
+      <script type="text/javascript">
+      $(document).ready(function(){
+
+  function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+          vars[key] = value;
+      });
+      return vars;
+  }
+
+      var unitUrl = "<%=propertyData.UnitUrl%>";
+       var SourceSite = "<%=propertyData.SourceSite%>";
+      var PriceLocal = "<%=propertyData.Price%>";
+      var propertyName  = "<%=propertyData.PropertyName%>";
+
+      var pathname  = getUrlVars()["prop"]
+      var sourceSite  = getUrlVars()["sourcesite"]
+      var minPrice  = getUrlVars()["propDes"]
+      var days  = getUrlVars()["days"]
+      var decodedString = atob(pathname);
+      var decodeSite = atob(sourceSite);
+      var decodeDays = atob(days);
+      var decodeMinProce  = atob(minPrice);
+      var price = decodedString.split('_')[1];
+      console.log("Split pth name ::"+price);
+       $('.PriceUnit').html(decodeMinProce)
+       $('#PriceUnit').html(price)
+
+       console.log("Price:"+price +"::"+decodeMinProce+"::"+decodeDays)
+       console.log(decodeSite)
+  var propertySource;
+        if(SourceSite == 'HOMEAWAY_US' || SourceSite == 'HOMEAWAY_UK'){
+                              propertySource = 'HomeAway'
+                          }else if (SourceSite == 'VRBO'){
+                               propertySource = 'VRBO'
+                          }else{
+                              propertySource = 'VacationRental'
+                         }
+
+      var area  = '<%=propertyData.Area%> ';
+      var areaM = '<%=propertyData.AreaUnit%> ';
+
+
+
+      if(area == ''){
+        console.log("Area blank")
+        $('.areaDiv').html('-');
+      }else{
+          console.log("Area not blank"+areaM)
+        $('.areaDiv').html(area);
+        $('.areaUnit').html(areaM);
+
+      }
+
+      var minStay = '<%=propertyData.MinimumStay%>';
+      if(minStay == ''){
+        $('.minstayDiv').html('-');
+      }else{
+         $('.minstayDiv').html(minStay);
+      }
+
+
+       if(decodeSite == 'local'){
+        console.log("Date not selected ")
+       $('.fromshowdt').show();
+        if(unitUrl == '' || unitUrl == 'undefined'){
+
+        console.log("dont have unit url in local");
+
+        $(".bestpricehide").css("display","none");
+       // $("#totalpriceprop").css("display","none");
+        $("#booknowbtnprop").removeClass("hide-container");
+        $("#booknowbtnprop").css("display","block");
+             $("#viewdealbtnprop").css("display","none");
+           }else{
+           console.log("have unit url in local");
+             $(".totalpriceprop").css("display","none");
+             $("#booknowbtnprop").css("display","none");
+             $("#viewdealbtnprop").css("display","block");
+               $('.sourcesitval').html(propertySource)
+             $(".bestpricehide").css("display","block");
+             var newUrl = '/vacationRental?source='+btoa(propertySource)+'&unitUrl='+btoa(unitUrl);
+              $("#viewdeallinksource").attr('href',newUrl)
+           }
+
+       }else{
+        console.log("Price is not local")
+         $('.fromshowdt').hide();
+            $('.totalpriceproppnight').html(price)
+            $('.totalsdays').html(decodeDays)
+            $('.sourcesitval').html(decodeSite)
+             $(".bestpricehide").css("display","block");
+             $(".totalpriceprop").css("display","block");
+             $("#booknowbtnprop").css("display","none");
+             $("#viewdealbtnprop").removeClass("hide-container");
+             $("#viewdealbtnprop").css("display","block");
+             var newUrl = '/vacationRental?source='+sourceSite+'&unitUrl='+btoa(unitUrl)
+              $("#viewdeallinksource").attr('href',newUrl)
+
+
+       }
+
+       if(price == 'N/A')
+       {
+        $(".dnlseciunit").hide();
+        $(".pernightNA").hide();
+        $(".bestpricehide").hide();
+        $(".totalpriceprop").hide();
+        $(".PriceUnit").text('Not Available');
+        $(".PriceUnit").show();
+       }
+
+  /*$("#viewdeallinksource").click(function(){
+      var newUrl = '/vacationRental?source='+sourceSite
+  $("#moreDetailsbooknow2").attr('href',newUrl)
+
+  })*/
+
+
+                    /* if(unitUrl === undefined || unitUrl == ''){
+                       $('#PriceUnit').text(PriceLocal)
+                       }*/
+
+       /*$.ajax({
+                   url: " https://cors-anywhere.herokuapp.com/https://channel-stage.homeaway.com/channel/vacationRentalRates?_restfully=true&unitUrl="+unitUrl,
+                   headers: {
+                         'Authorization':'Bearer MTMzYmI2MGQtYWM4Yy00YjQxLThhMzEtN2M3Y2NjNDRjMzI5',
+                         'Content-Type':'application/json',
+                        },
+                      type: "GET",
+                      dataType: "json",
+                      success: function(data){
+                      console.log("---------------Response form the home away---------------");
+                      console.log("UNIT URL value after response ::"+unitUrl);
+                       var price = data.additionalPlans[0].preStay.perStay.baseTotal.amount.amount;
+                       console.log("Price of UNIT URL in prop page"+price)
+
+                       $('#PriceUnit').text(price)
+
+
+
+
+                    }
+             })*/
+
+
+
+   $("#logout").click(function(){
+  //alert("lll");
+                        $.ajax({url: "/logout",type: "GET", data: JSON.stringify({
+                         }),dataType: "json",contentType: "application/json", success: function(data){
+
+                        if(data.data ==200){
+                          console.log("logout -------------")
+                           //$.removeCookie("openPropTour");
+                           window.location.href = '/'
+
+                        }
+                        }
+
+                     })
+                    });
+
+      })
+
+  </script>
+
+
+      <!-- jQuery -->
+     <!--  <script src="http://dev.navigaze.com/js/jquery.bxslider.min-1.js"></script>
+      <script src="http://dev.navigaze.com/vendor/jquery/jquery.js"></script>
+
+  <script src="http://dev.navigaze.com/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+
+     <script src="http://dev.navigaze.com/vendor/jquery/jquery-ui.min.js"></script>
+      <script src="http://dev.navigaze.com/vendor/jquery/jquery.cookie.js"></script>
+
+   <script src="http://dev.navigaze.com/js/jquery1.easing.min.js"></script>
+  <script src="http://dev.navigaze.com/js/navigazecookies.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <!-- <script src="http://dev.navigaze.com/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+
+
+      <!-- Plugin JavaScript -->
+
+
+      <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+      <!--script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script-->
+
+      <script src="http://dev.navigaze.com/javascripts/sidebar/jquery.sidebar.min.js"></script>
+
+      <script src="http://dev.navigaze.com/javascripts/moment-with-locales.min.js"></script>
+
+
+
+
+      <!-- Include the threejs custom build -->
+      <script src="http://dev.navigaze.com/javascripts/forge-lib-0.9.5/three.js/three.r86.custom.min.js"></script>
+
+      <!-- Include the Hammer.js library -->
+      <script src="http://dev.navigaze.com/javascripts/forge-lib-0.9.5/hammer.js/hammer.min.js"></script>
+
+      <!-- Include the ForgeJS library -->
+      <script type="text/javascript" src="http://dev.navigaze.com/javascripts/forge-lib-0.9.5/forge/forge.min.js"></script>
+
+
+
+     <!--  <script src="http://dev.navigaze.com/javascripts/moment.js/moment.min.js"></script> -->
+
+
+   <!--    <script type="text/javascript" src="http://dev.navigaze.com/javascripts/lightslider/lightslider.min1.js"></script> -->
+      <!--script src="/dist/js/dropdown.js"></script-->
+     <script src="http://dev.navigaze.com/js/grayscale.min.js"></script>
+        <script src="/js/jquery.bxslider.min.js"></script>
+
+  <script type="text/javascript" src="http://dev.navigaze.com/js/prettify.js"></script>
+   <script type="text/javascript" src="http://dev.navigaze.com/js/slimcrollunify.js"></script>
+
+                            <div class="modal fade" id="myModalgetquote1" role="dialog">
+
+
+
+                              </div>
+
+      <script type="text/javascript">
+
+        jQuery(document).ready(function($) {
+      //$(function(){
+          $('#scrlm').slimScroll1({
+
+        });
+  //});
+    });
+  </script>
+
+
+
+
+
+
+   <script>
+  /* When the user clicks on the button,
+  toggle between hiding and showdrpproping the dropdownprop content */
+  function myFunction() {
+      document.getElementById("myDropdownprop").classList.toggle("showdrpprop");
+  }
+
+  // Close the dropdownprop if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+
+      var dropdownprops = document.getElementsByClassName("dropdownprop-content");
+      var i;
+      for (i = 0; i < dropdownprops.length; i++) {
+        var openDropdownprop = dropdownprops[i];
+        if (openDropdownprop.classList.contains('showdrpprop')) {
+          openDropdownprop.classList.remove('showdrpprop');
+        }
+      }
+    }
+  }
+  </script>
+      <script>
+
+
+
+
+          $(document).ready(function () {
+
+
+
+             initMap1();
+
+
+
+
+              var panoNotLoaded = true;
+              var mapNotLoaded = true;
+              var sidebarSelection = 1;
+
+              //  $('#divLoading').removeClass("loader");
+
+               // All sides
+              var sides = ["left", "right"];
+
+              // Initialize sidebars
+              for (var i = 0; i < sides.length; ++i) {
+                  var cSide = sides[i];
+                  $(".sidebar." + cSide).sidebar({ side: cSide });
+              }
+              if (window.matchMedia("(max-width: 991px)").matches) {
+
+              $(".sidebar.left").trigger("sidebar:close");
+              $(".sidebar.right").trigger("sidebar:close");
+              $(".bSideBar11").addClass("fa-chevron-left");
+              //$("#bSideBar > i").addClass("fa-chevron-left");
+              $(".aSideBar11").addClass("fa-chevron-right");
+              //$("#aSideBar > i").addClass("fa-chevron-right");
+                  $("#aSideBar").on("click", function () {
+
+                    var $this = $(this);
+                  var action = $this.attr("data-action");
+                  var side = $this.attr("data-side");
+                  $(".sidebar." + side).trigger("sidebar:" + action);
+
+
+                       $(".sidebar.right").trigger("sidebar:close");
+                       //$(".sidebar.left").trigger("sidebar:open");
+                       //$(".aSideBar11").removeClass("fa-chevron-right");
+                       console.log("++fa-chevron-right");
+                       $(".aSideBar11").toggleClass("fa-chevron-right");
+                       $(".aSideBar11").toggleClass("fa-chevron-left");
+
+                       console.log("++fa-chevron-left")
+
+                       if ($(".sidebar.right").trigger("sidebar:close")) {
+
+                        $(".bSideBar11").addClass("fa-chevron-left");
+                        $(".bSideBar11").removeClass("fa-chevron-right");
+                       }
+                       else
+                       {
+
+                        $(".bSideBar11").addClass("fa-chevron-right");
+                        $(".bSideBar11").removeClass("fa-chevron-left");
+                       }
+                   return false;
+              });
+
+              $("#bSideBar").on("click", function () {
+
+
+                 var $this = $(this);
+                  var action = $this.attr("data-action");
+                  var side = $this.attr("data-side");
+
+                  $(".sidebar." + side).trigger("sidebar:" + action);
+
+                   $(".sidebar.left").trigger("sidebar:close");
+                   //$(".sidebar.right").trigger("sidebar:open");
+                   $(".bSideBar11").toggleClass("fa-chevron-left");
+                       $(".bSideBar11").toggleClass("fa-chevron-right");
+
+                       if ($(".sidebar.left").trigger("sidebar:close")) {
+
+                        $(".aSideBar11").addClass("fa-chevron-right");
+                        $(".aSideBar11").removeClass("fa-chevron-left");
+                       }
+                       else
+                       {
+                          $(".aSideBar11").addClass("fa-chevron-left");
+                        $(".aSideBar11").removeClass("fa-chevron-right");
+                       }
+                   return false;
+              });
+
+              }else
+              {
+              $(".sidebar.left").trigger("sidebar:open");
+              $(".sidebar.right").trigger("sidebar:open");
+
+              $(".bSideBar11").addClass("fa-chevron-right");
+              $(".aSideBar11").addClass("fa-chevron-left");
+
+
+              // Click handlers
+              $("#aSideBar").on("click", function () {
+                      // $(".sidebar.right").trigger("sidebar:close");
+                       $(".arrow_box123").fadeOut(2000);
+                                   $(".arrow_box1234").fadeOut(2000);
+                       $(".arrow_box123").fadeOut();
+                                   $(".arrow_box1234").fadeOut();
+                                   $(".fa").removeClass("bounce");
+                                   $(".fa").removeClass("bounceX");
+                                   $(".fa").removeClass("bounceX1");
+                  var $this = $(this);
+                  var action = $this.attr("data-action");
+                  var side = $this.attr("data-side");
+                  $(".sidebar." + side).trigger("sidebar:" + action);
+                  /*$("#bSideBar > i").removeClass("fa-chevron-right");
+                  $("#bSideBar > i").addClass("fa-chevron-left");
+                  $("#aSideBar > i").toggleClass("fa-chevron-left");
+                  $("#aSideBar > i").toggleClass("fa-chevron-right");*/
+                  $(".aSideBar11").toggleClass("fa-chevron-left");
+  $(".aSideBar11").toggleClass("fa-chevron-right");
+                  return false;
+              });
+
+              $("#bSideBar").on("click", function () {
+                 $(".arrow_box123").fadeOut(2000);
+                                   $(".arrow_box1234").fadeOut(2000);
+                  // $(".sidebar.left").trigger("sidebar:close");
+                   $(".arrow_box123").fadeOut();
+                                   $(".arrow_box1234").fadeOut();
+                                   $(".fa").removeClass("bounce");
+                                   $(".fa").removeClass("bounceX");
+                                   $(".fa").removeClass("bounceX1");
+                  var $this = $(this);
+                  var action = $this.attr("data-action");
+                  var side = $this.attr("data-side");
+
+                  $(".sidebar." + side).trigger("sidebar:" + action);
+                /*  $("#aSideBar > i").removeClass("fa-chevron-left");
+                  $("#aSideBar > i").addClass("fa-chevron-right");
+                  $("#bSideBar > i").toggleClass("fa-chevron-right");
+                  $("#bSideBar > i").toggleClass("fa-chevron-left");
+  */
+                  $(".bSideBar11").toggleClass("fa-chevron-right");
+   $(".bSideBar11").toggleClass("fa-chevron-left");
+                  return false;
+              });
+
+          }
+
+
+              $("#email").click(function(){
+                var propertyName  = "<%=propertyData.PropertyName%>";
+                 var proertyUrl = window.location.href;
+                  console.log('email ::--'+$('#userName_prop').val());
+                  console.log(propertyName+":::"+proertyUrl)
+              $.ajax({url: "/emailus",type: "POST", data: JSON.stringify({
+                     name3: $('#userName_prop').val(),
+                     email: $('#useremail').val(),
+                     message: $('#message').val(),
+                     arrival : $('#datetimeA11').val(),
+                     departure : $('#datetimeD11').val(),
+                     propertyName : propertyName,
+                     proertyUrl : proertyUrl
+                  }),dataType: "json",contentType: "application/json", success: function(result){
+              console.log("AJAX return ::"+result);
+      }});
+       });
+
+                  /*$('#datetimeA').datetimepicker({
+                  format: 'DD-MM-YYYY',
+                  disabledTimeIntervals: true,
+                  disabledHours: true
+              });
+
+              $('#datetimeD').datetimepicker({
+                  format: 'DD-MM-YYYY',
+                  disabledTimeIntervals: true,
+                  disabledHours: true
+              });*/
+              //$(".sidebar.left").trigger("sidebar:open");
+
+
+              $("#aInterior").on("click", function () {
+  $("#virtual_tour_text_div").fadeIn(1);
+                if (window.matchMedia("(max-width: 991px)").matches) {
+
+  $(".sidebar.left").trigger("sidebar:close");
+  $(".sidebar.right").trigger("sidebar:close");
+                  if ($(".sidebar.left").trigger("sidebar:close")) {
+
+                        $(".aSideBar11").addClass("fa-chevron-right");
+                        $(".aSideBar11").removeClass("fa-chevron-left");
+                       }
+                       else
+                       {
+                          $(".aSideBar11").addClass("fa-chevron-left");
+                        $(".aSideBar11").removeClass("fa-chevron-right");
+                       }
+
+
+  }
+  $(".containerbookmebtn").css("bottom","20px");
+                  $("#divNeighbourhood").hide(function () {
+                      //  $('#divProperty').empty();
+                  });
+                  $("#divMap").hide(function () {
+                      //  $('#divProperty').empty();
+                  });
+                   $("#divfrv").hide(function () {
+                      //  $('#divProperty').empty();
+                  })
+                  $("#divProperty").fadeIn(function () {
+
+
+                  });
+                  if (sidebarSelection != 1) {
+                      toggleSideBar(1, sidebarSelection);
+                  }
+                  sidebarSelection = 1;
+                  setTimeout(function() {
+
+          $("#virtual_tour_text_div").fadeOut(1500);
+
+      },5000);
+
+
+
+                  return false;
+
+                    });
+
+  /* $("#divProperty").click(function(){
+   alert("clicked on tour")
+   $("#virtual_tour_text_div").fadeOut(100);
+   });*/
+
+
+
+
+             $("#aNeighbourhood").on("click", function () {
+
+              if (window.matchMedia("(max-width: 991px)").matches) {
+
+  $(".sidebar.left").trigger("sidebar:close");
+  $(".sidebar.right").trigger("sidebar:close");
+             if ($(".sidebar.left").trigger("sidebar:close")) {
+
+                        $(".aSideBar11").addClass("fa-chevron-right");
+                        $(".aSideBar11").removeClass("fa-chevron-left");
+                       }
+                       else
+                       {
+                          $(".aSideBar11").addClass("fa-chevron-left");
+                        $(".aSideBar11").removeClass("fa-chevron-right");
+                       }
+
+
+
+  }
+              $(".containerbookmebtn").css("bottom","20px");
+             /* $(".containerbookmebtn").css("bottom","20px");
+                 $.ajax({url: "/panoBackImg",type: "POST", data: JSON.stringify({
+                  id: $(this).attr("data-id")
+                   }),dataType: "json",contentType: "application/json", success: function(data){
+                      console.log("----------------Neighbourhood Data--------------");
+                      console.log(JSON.stringify(data));
+                      if (panoNotLoaded) {
+                      const neighbourhoodConfig = {
+                          ImageURL : data.panoImg[0].PanoId.ImageUrl,
+                          theta    : data.panoImg[0].PanoMarkerPosition.position.theta,
+                          phi      : data.panoImg[0].PanoMarkerPosition.position.phi,
+                          radius   : data.panoImg[0].PanoMarkerPosition.position.radius
+                      }
+                      var forgeConfig = getDefaultPano(neighbourhoodConfig);
+                      var viewer = new FORGE.Viewer("divNeighbourhood", forgeConfig);
+                      if (viewer.customerAction == null) {
+                          var customAction = { one: 1 };
+                          viewer.customerAction = customAction;
+                      }
+                      viewer.customerAction.getHotspotInfo = function (property) {
+                          return 1;
+                      };
+                      viewer.customerAction.onSceneLoadComplete = function (property) {
+                          console.log("complete");
+                      };
+                      viewer.customerAction.onSceneLoadStart = function (property) {
+                      };
+                      panoNotLoaded = false;
+                  }
+
+                     }
+               });*/
+               if (panoNotLoaded) {
+                console.log("Page not loaded")
+                var neighbourhoodConfig = "<%= propertyData.VRNeighbourhoodThumbnail.NbhPano %>"
+
+
+
+      var afterDot = neighbourhoodConfig.split(".");
+               console.log("Extension of file ::"+afterDot);
+               if(afterDot[1] == undefined ){
+                var level_0 = "<%= propertyData.Levels.level0 %>"
+                var level_1 = "<%= propertyData.Levels.level1 %>"
+                var level_2 = "<%= propertyData.Levels.level2 %>"
+                var level_3 = "<%= propertyData.Levels.level3 %>"
+                 var fov = "<%= propertyData.CameraPosition.fov %>"
+                var roll = "<%= propertyData.CameraPosition.roll %>"
+                var pitch = "<%= propertyData.CameraPosition.pitch %>"
+                var yaw = "<%= propertyData.CameraPosition.yaw %>"
+               var  theta    = '<%=propertyData.VRNeighbourhoodThumbnail.position.theta%>'
+               var  phi     = '<%=propertyData.VRNeighbourhoodThumbnail.position.phi%>'
+              var radius   = '<%=propertyData.VRNeighbourhoodThumbnail.position.radius%>'
+              var panoIcon = '<%=propertyData.VRNeighbourhoodPanoIcon.URL%>'
+
+               var zipConfig = {
+      "controllers":
+      {
+          "instances":
+          [
+              {
+                  "uid": "pointer",
+                  "type": "pointer",
+                  "options":
+                  {
+                      "orientation": { "drag": true },
+                      "zoom": { "toPointer": true }
+                  }
+              }
+          ]
+      },
+
+      "story":
+      {
+          "uid": "multiresolution-1",
+          "name": "Multiresolution Story",
+          "slug": "multiresolution-story",
+          "description": "This project display multiresolution paronomic images",
+          "default": "scene-0",
+
+          "scenes":
+          [
+             {
+
+                  "name": "House Interior",
+                  "slug": "house-interior",
+                  "description": "Saint Jorioz's house interior",
+
+
+
+                  "media":
+                  {
+                      "uid": "media-1",
+                      "type": "image",
+
+                      "preview":
+                      {
+                          "url": neighbourhoodConfig+"/{face}.jpg",
+                          "tile": 512
+                      },
+
+                      "source":
+                      {
+                          "format": "cube",
+
+                          "faces":
+                          {
+                              "front": 0,
+                              "right": 1,
+                              "back": 2,
+                              "left": 3,
+                              "down": 5,
+                              "up": 4
+                          },
+
+                          "pattern": neighbourhoodConfig+"/{face}/{level}/{y}_{x}.jpg",
+
+                          "levels":
+                          [
+                              {
+                                  "name": "level 0",
+                                  "width": parseInt(level_0),
+                                  "height": parseInt(level_0),
+                                  "tile": 512
+                              },
+
+                              {
+                                  "name": "level 1",
+                                  "width": parseInt(level_1),
+                                  "height": parseInt(level_1),
+                                  "tile": 512
+                              },
+
+                              {
+                                  "name": "level 2",
+                                  "width":parseInt(level_2),
+                                  "height": parseInt(level_2),
+                                  "tile": 512
+                              },
+                              {
+                                  "name": "level 3",
+                                  "width": parseInt(level_3),
+                                  "height": parseInt(level_3),
+                                  "tile": 512
+                              }
+                          ]
+                      }
+                  },
+                     "camera":
+                    {
+
+          "parallax": 0,
+
+          "yaw":
+          {
+              "default": parseInt(yaw),
+          },
+          "pitch":
+          {
+              "default": parseInt(pitch),
+          },
+          "roll":
+          {
+              "default": parseInt(roll),
+          },
+          "fov":
+          {
+              "default": parseInt(fov),
+               "min":5,
+               "max":100
+          }
+           },
+           "hotspots":
+                              [
+
+                                  {
+                                      "uid": "hotspot-1",
+                                      "transform":
+                                      {
+                                          "position":
+                                          {
+                                              "theta": parseInt(theta) ,
+                                              "phi": parseInt(phi),
+                                              "radius": parseInt(radius)
+                                          }
+
+
+                                      },
+
+                                      "geometry":
+                                      {
+                                          "type": "plane",
+                                          "options":
+                                          {
+                                              "width": 50,
+                                              "height": 50
+                                          }
+                                      },
+                                      /*"autoScale" : true,*/
+                                      "facingCenter" : true,
+                                      "material":
+                                      {
+                                          "image": panoIcon,
+                                          "opacity": 1
+                                      },
+
+                                      "events":
+                                      {
+                                          "onClick": ["action-openproptour-2"]
+                                      }
+                                  }
+                              ]
+              }
+          ]
+      }
+
+
+  }
+
+           var viewer = new FORGE.Viewer("divNeighbourhood",zipConfig);
+
+
+               }else{
+
+                 const neighbourhoodConfig2 = {
+                          src : neighbourhoodConfig,
+                          panoIcon : '<%=propertyData.VRNeighbourhoodPanoIcon.URL%>',
+                          theta    : '<%=propertyData.VRNeighbourhoodThumbnail.position.theta%>',
+                          phi      : '<%=propertyData.VRNeighbourhoodThumbnail.position.phi%>',
+                          radius   : '<%=propertyData.VRNeighbourhoodThumbnail.position.radius%>',
+                          CameraPosition : {
+                                      fov : '<%=propertyData.CameraPosition.fov%>',
+                                      roll : '<%=propertyData.CameraPosition.roll%>',
+                                      pitch : '<%=propertyData.CameraPosition.pitch%>',
+                                      yaw : '<%=propertyData.CameraPosition.yaw%>'
+                                  }
+                      }
+                  console.log("neighbourhoodConfig2 value ::"+JSON.stringify(neighbourhoodConfig2))
+                 var forgeConfig = getDefaultPano(neighbourhoodConfig2);
+                      var viewer = new FORGE.Viewer("divNeighbourhood", forgeConfig);
+                      console.log("Viewer object ");
+                      console.log(viewer)
+                      if (viewer.customerAction == null) {
+                          var customAction = { one: 1 };
+                          viewer.customerAction = customAction;
+                      }
+                      viewer.customerAction.getHotspotInfo = function (property) {
+                          return 1;
+                      };
+                      viewer.customerAction.onSceneLoadComplete = function (property) {
+                          console.log("complete");
+                      };
+                      viewer.customerAction.onSceneLoadStart = function (property) {
+                      };
+
+
+               }
+                 panoNotLoaded = false;
+                }
+
+
+
+                  $("#divProperty").hide(function () {
+                  });
+                  $("#divMap").hide(function () {
+                  });
+                   $("#divfrv").hide(function () {
+                  })
+                  $("#divNeighbourhood").fadeIn(function () {
+                  });
+                  if (sidebarSelection != 2) {
+                      toggleSideBar(2, sidebarSelection);
+                  }
+                  sidebarSelection = 2;
+                  return false;
+              });
+
+
+              $("#aMap").on("click", function () {
+
+                if (window.matchMedia("(max-width: 991px)").matches) {
+
+  $(".sidebar.left").trigger("sidebar:close");
+  $(".sidebar.right").trigger("sidebar:close");
+
+         if ($(".sidebar.left").trigger("sidebar:close")) {
+
+                        $(".aSideBar11").addClass("fa-chevron-right");
+                        $(".aSideBar11").removeClass("fa-chevron-left");
+                       }
+                       else
+                       {
+                          $(".aSideBar11").addClass("fa-chevron-left");
+                        $(".aSideBar11").removeClass("fa-chevron-right");
+                       }
+
+  }
+  $(".containerbookmebtn").css("bottom","20px");
+                  $("#divNeighbourhood").hide(function () {
+                      //  $('#divProperty').empty();
+                  });
+                  $("#divProperty").hide(function () {
+                      //  $('#divProperty').empty();
+                  });
+                   $("#divfrv").hide(function () {
+                      //  $('#divProperty').empty();
+                  });
+                  $("#divMap").fadeIn(function () {
+                      if (mapNotLoaded) {
+                          initMap();
+                          mapNotLoaded = false;
+                      }
+                  });
+
+                  if (sidebarSelection != 3) {
+                      toggleSideBar(3, sidebarSelection);
+                  }
+                  sidebarSelection = 3;
+                  return false;
+              });
+
+
+    $("#afrv").on("click", function () {
+
+      if (window.matchMedia("(max-width: 991px)").matches) {
+
+  $(".sidebar.left").trigger("sidebar:close");
+  $(".sidebar.right").trigger("sidebar:close");
+
+           if ($(".sidebar.left").trigger("sidebar:close")) {
+
+                        $(".aSideBar11").addClass("fa-chevron-right");
+                        $(".aSideBar11").removeClass("fa-chevron-left");
+                       }
+                       else
+                       {
+                          $(".aSideBar11").addClass("fa-chevron-left");
+                        $(".aSideBar11").removeClass("fa-chevron-right");
+                       }
+
+  }
+  $(".containerbookmebtn").css("bottom","94px");
+                  $("#divNeighbourhood").hide(function () {
+                      //  $('#divProperty').empty();
+                  });
+                  $("#divMap").hide(function () {
+                      //  $('#divProperty').empty();
+                  });
+
+                  $("#divProperty").hide(function () {
+                      //  $('#divProperty').empty();
+                  });
+
+
+                  $("#divfrv").css("style","");
+
+              //    $(".lSSlideWrapper ").css("style","transition-duration: 400ms;");
+                 //    $("#lightSlider").css("style","lightSlider lsGrab lSSlide");
+
+                  $("#divfrv").fadeIn(function () {
+
+
+                  });
+                  if (sidebarSelection != 4) {
+                      toggleSideBar(4, sidebarSelection);
+                  }
+                  sidebarSelection = 4;
+
+                  return false;
+              });
+
+
+
+
+          });
+
+
+
+          function toggleSideBar(currentSelection, previousSelection) {
+              if (currentSelection == 1 || previousSelection == 1) {
+                  $("#liInterior").toggleClass("background");
+              }
+              if (currentSelection == 2 || previousSelection == 2) {
+                  $("#liNeighbourhood").toggleClass("background");
+              }
+              if (currentSelection == 3 || previousSelection == 3) {
+                  $("#liMap").toggleClass("background");
+              }
+          }
+
+          function initMap() {
+               var uluru = { lat: <%=propertyData.MapLocation.coordinates[1]%>, lng: <%=propertyData.MapLocation.coordinates[0]%> };
+              map = new google.maps.Map(document.getElementById('divMap'), {
+                  center: { lat: <%=propertyData.MapLocation.coordinates[1]%>, lng: <%=propertyData.MapLocation.coordinates[0]%> },
+                  zoom: 17,
+                  disableDefaultUI: true,
+                  mapTypeId: 'hybrid',
+                  //tilte: 45,
+                  draggable: true,
+                  scrollwheel: true,
+                  gestureHandling: "greedy",
+                  streetViewControl: true,
+
+
+              });
+              var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+          });
+
+
+           map.addListener('center_changed', function() {
+            // 3 seconds after the center of the map has changed, pan back to the
+            // marker.
+            window.setTimeout(function() {
+              map.panTo(marker.getPosition());
+            }, 3000);
+          });
+
+          marker.addListener('click', function() {
+            map.setZoom(25);
+            map.setCenter(marker.getPosition());
+          });
+          }
+
+
+      function initMap1() {
+               var uluru = { lat: <%=propertyData.MapLocation.coordinates[1]%>, lng: <%=propertyData.MapLocation.coordinates[0]%> };
+              map = new google.maps.Map(document.getElementById('divMap2'), {
+                  center: { lat: <%=propertyData.MapLocation.coordinates[1]%>, lng: <%=propertyData.MapLocation.coordinates[0]%> },
+                  zoom: 17,
+                  disableDefaultUI: true,
+                  mapTypeId: 'satellite',
+                  //tilte: 45,
+
+                  gestureHandling: "greedy",
+                /*  height : 100,
+                  width : 30
+                  */
+
+
+              });
+              var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+          });
+
+
+          /* map.addListener('center_changed', function() {
+
+            window.setTimeout(function() {
+              map.panTo(marker.getPosition());
+            }, 3000);
+          });
+
+          marker.addListener('click', function() {
+            map.setZoom(25);
+            map.setCenter(marker.getPosition());
+          });*/
+          }
+
+                      /***** MAP 2 ***/
+
+                         /* function init1Map() {
+
+               var uluru = { lat: <%=propertyData.MapLocation.coordinates[1]%>, lng: <%=propertyData.MapLocation.coordinates[0]%> };
+              map = new google.maps.Map(document.getElementById('divMap1'), {
+
+                  center: { lat: <%=propertyData.MapLocation.coordinates[1]%>, lng: <%=propertyData.MapLocation.coordinates[0]%> },
+                  zoom: 17,
+                  disableDefaultUI: true,
+                  mapTypeId: 'hybrid',
+
+                  draggable: true,
+                  scrollwheel: true,
+                  gestureHandling: "greedy",
+                  streetViewControl: true,
+
+
+              });
+              var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+          });
+
+
+
+          }*/
+
+
+                      /** map2 **/
+
+
+
+
+
+          function getDefaultPano(url) {
+
+              return {
+                    "controllers":
+                     {
+                      "instances":
+                      [
+                      {
+                          "uid": "pointer",
+                          "type": "pointer",
+                          "options":
+                          {
+                              "orientation": { "drag": true }
+                          }
+                      }
+                      ]
+                 },
+                  "story":
+                  {
+                      "uid": "bay-of-banderas",
+                      "name": "Bay of Banderas",
+                      "slug": "bay-of-banderas",
+                      "description": "Bahía de Banderas",
+                      "default": "scene-2",
+                      "events":
+                      {
+                          "onSceneLoadProgress": "action-story-onSceneLoadProgress",
+                          "onSceneLoadError": "action-story-onSceneLoadError",
+                          "onSceneLoadStart": "action-story-onSceneLoadStart",
+                          "onSceneLoadComplete": "action-story-onSceneLoadComplete"
+                      },
+                      "scenes":
+                      [
+
+                          {
+                              "uid": "scene-2",
+                              "name": "Second scene",
+                              "slug": "second-scene",
+                              "description": "This is the second scene",
+
+                              "media":
+                              {
+                                  "uid": "media-1",
+                                  "type": "image",
+
+                                  "source":
+                                  {
+                                      "format": "equi",
+                                      "url": url.src
+                                  }
+                              },
+
+             "camera":
+                              {
+
+          "parallax": 0,
+
+          "yaw":
+          {
+              "default": parseInt(url.CameraPosition.yaw),
+
+          },
+
+          "pitch":
+          {
+              "default": parseInt(url.CameraPosition.pitch),
+
+          },
+
+          "roll":
+          {
+              "default": parseInt(url.CameraPosition.roll),
+
+          },
+
+          "fov":
+          {
+              "default": parseInt(url.CameraPosition.fov),
+              "min" : 5,
+              "max" : 100
+          }
+
+                              },
+                              "hotspots":
+                              [
+
+                                  {
+                                      "uid": "hotspot-1",
+                                      "transform":
+                                      {
+                                          "position":
+                                          {
+                                              "theta": parseInt(url.theta) ,
+                                              "phi": parseInt(url.phi),
+                                              "radius": parseInt(url.radius)
+                                          }
+
+
+                                      },
+
+                                      "geometry":
+                                      {
+                                          "type": "plane",
+                                          "options":
+                                          {
+                                              "width": 50,
+                                              "height": 50
+                                          }
+                                      },
+                                      "autoScale" : true,
+                                      "facingCenter" : true,
+                                      "material":
+                                      {
+                                          "image": url.panoIcon,
+                                          "opacity": 1
+                                      },
+
+                                      "events":
+                                      {
+                                          "onClick": ["action-openproptour-2"]
+                                      }
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  "plugins":
+                  {
+                      "engines":
+                      [
+                          {
+                              "uid": "org.forgejs.vrviewer",
+                              "url": "VRViewer/"
+                          }
+                      ],
+
+                      "instances":
+                      [
+                          {
+                              "uid": "myplugin-instance-0",
+                              "engine": "org.forgejs.vrviewer"
+                          }
+                      ]
+                  },
+                  "actions":
+                  [
+                      {
+                          "uid": "action-story-onSceneLoadStart",
+                          "target": "viewer.customerAction",
+                          "method":
+                          {
+                              "name": "onSceneLoadStart",
+                              "args": ["action-story-onSceneLoadStart"]
+                          }
+                      },
+                      {
+                          "uid": "action-story-onSceneLoadComplete",
+                          "target": "viewer.customerAction",
+                          "method":
+                          {
+                              "name": "onSceneLoadComplete",
+                              "args": ["action-story-onSceneLoadComplete"]
+                          }
+                      },
+                      {
+                          "uid": "action-story-onSceneLoadError",
+                          "target": "window.console",
+                          "method":
+                          {
+                              "name": "log",
+                              "args": ["action-story-onSceneLoadError"]
+                          }
+                      },
+                      {
+                          "uid": "action-story-onSceneLoadProgress",
+                          "target": "window.console",
+                          "method":
+                          {
+                              "name": "log",
+                              "args": ["action-story-onSceneLoadProgress"]
+                          }
+                      },
+                      {
+                          "uid": "action-openproptour-1",
+                          "target": "viewer.customerAction",
+                          "method":
+                          {
+                              "name": "openPropTour",
+                              "args": [{
+
+                                  "theta": 82,
+                                  "phi": -8,
+                                  "scene": "scene-1"
+
+                              }]
+                          }
+                      },
+                      {
+                          "uid": "action-openproptour-2",
+                          "target": "viewer.customerAction",
+                          "method":
+                          {
+                              "name": "openPropTour",
+                              "args": [{
+
+                                  "theta": -179,
+                                  "phi": -11,
+                                  "scene": "scene-0"
+
+                              }]
+                          }
+                      }
+                      ,
+                      {
+                          "uid": "action-loadscene-0",
+                          "target": "viewer.story",
+
+                          "method":
+                          {
+                              "name": "loadScene",
+                              "args": ["scene-0"]
+                          }
+                      },
+                      {
+                          "uid": "action-camera-4",
+                          "target": "viewer.renderer.camera",
+
+                          "method":
+                          {
+                              "name": "lookAt",
+                              "args": [180, 0, 0]
+                          }
+                      },
+                      {
+                          "uid": "action-camera-1",
+                          "target": "viewer.renderer.camera",
+
+                          "method":
+                          {
+                              "name": "lookAt",
+                              "args": [82, -8, 0, 40, 1000]
+                          }
+                      },
+                      {
+                          "uid": "action-loadscene-1",
+                          "target": "viewer.story",
+
+                          "method":
+                          {
+                              "name": "loadScene",
+                              "args": ["scene-1"]
+                          }
+                      }
+                  ]
+
+
+              };
+          }
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjAo93zqh1ZmUKQwUq4j3XJvzJ6qoIUXc"></script>
+
+
+      <!-- Theme JavaScript -->
+
+
+  <script type="text/javascript">
+          $(document).ready(function() {
+
+              var user = ''
+          if(!user){
+          console.log("User is not loged in ")
+          var url = window.location.href;
+         $.cookie("propId", url);
+
+         sessionStorage.setItem("propId",url);
+
+
+         // setTimeout(function(){
+         // alert(lastnames);
+         // },1000)
+
+          }
+
+
+
+
+
+                  $('#bxslider-vertical .bxslider').bxSlider({
+                      mode: 'vertical',
+                      infiniteLoop: false,
+                      pager:false,
+                      slideWidth: 200,
+                      maxSlides: 2,
+                      minSlides: 3,
+                      slideMargin: 4
+                  });
+
+                  /* $('#bxslider-horizontal .bxslider').bxSlider({
+                      mode: 'horizontal',
+                      infiniteLoop: false,
+                      pager:false,
+                      slideWidth: 200,
+                      maxSlides: 4,
+                      minSlides: 2,
+                      slideMargin: 10
+                  });
+  */
+
+
+            /*  $('#lightSlider').lightSlider({
+      gallery: true,
+      item: 1,
+      loop:true,
+      slideMargin: 0,
+      thumbItem: 9,
+      autoWidth: false,
+      autoWidth: false,
+                      });*/
+
+      });
+
+
+  storage = window.localStorage;
+          //alert(storage);
+        if(storage.getItem("ValidFrom") == 'Set'){
+            $( "button[data-target = '#myModalgetquote1']" ).trigger( "click" );
+            storage.clear();
+        }
+
+
+      </script>
+  <!--  ====================  Side Buttons Script ============== -->
+  <script type="text/javascript">
+      $(".summary_button").hover(function(){
+           $(".summary_pop").fadeIn("slow");
+           $(".description_pop").fadeOut("slow");
+           $(".availibility_btn_pop").fadeOut("slow");
+           $(".aminitities_btn_pop").fadeOut("slow");
+            $(".h_rule_btn_pop").fadeOut("slow");
+             $(".cancel_policy_btn_pop").fadeOut("slow");
+             $(".reviews_policy_btn_pop").fadeOut("slow");
+            }, function(){
+          //$(".summary_pop").fadeOut("slow",5000);
+
+      });
+      $( ".summary_pop" ).mouseleave(function() {
+    $(".summary_pop").fadeOut("slow");
+  });
+      // Decription
+
+      $(".description_button").hover(function(){
+           $(".description_pop").fadeIn("slow");
+           $(".summary_pop").fadeOut("slow");
+            $(".availibility_btn_pop").fadeOut("slow");
+           $(".aminitities_btn_pop").fadeOut("slow");
+            $(".h_rule_btn_pop").fadeOut("slow");
+             $(".cancel_policy_btn_pop").fadeOut("slow");
+             $(".reviews_policy_btn_pop").fadeOut("slow");
+            }, function(){
+
+          //$(".description_pop").fadeOut("slow");
+
+      });
+  $( ".description_pop" ).mouseleave(function() {
+    $(".description_pop").fadeOut("slow");
+  });
+
+      // Availibility
+
+      $(".availibility_button").hover(function(){
+           $(".availibility_btn_pop").fadeIn("slow");
+            $(".summary_pop").fadeOut("slow");
+          $(".description_pop").fadeOut("slow");
+          $(".aminitities_btn_pop").fadeOut("slow");
+            $(".h_rule_btn_pop").fadeOut("slow");
+             $(".cancel_policy_btn_pop").fadeOut("slow");
+             $(".reviews_policy_btn_pop").fadeOut("slow");
+            }, function(){
+
+           //$(".availibility_btn_pop").fadeOut("slow");
+
+      });
+  $( ".availibility_btn_pop" ).mouseleave(function() {
+    $(".availibility_btn_pop").fadeOut("slow");
+  });
+
+     // Aminities
+
+      $(".aminitities_button").hover(function(){
+           $(".aminitities_btn_pop").fadeIn("slow");
+            $(".summary_pop").fadeOut("slow");
+          $(".description_pop").fadeOut("slow");
+           $(".availibility_btn_pop").fadeOut("slow");
+           $(".h_rule_btn_pop").fadeOut("slow");
+             $(".cancel_policy_btn_pop").fadeOut("slow");
+             $(".reviews_policy_btn_pop").fadeOut("slow");
+            }, function(){
+
+           //$(".aminitities_btn_pop").fadeOut("slow");
+
+      });
+
+  $( ".aminitities_btn_pop" ).mouseleave(function() {
+    $(".aminitities_btn_pop").fadeOut("slow");
+  });
+
+      // Rules
+
+      $(".rules_button_pop").hover(function(){
+           $(".h_rule_btn_pop").fadeIn("slow");
+            $(".summary_pop").fadeOut("slow");
+          $(".description_pop").fadeOut("slow");
+           $(".availibility_btn_pop").fadeOut("slow");
+           $(".aminitities_btn_pop").fadeOut("slow");
+             $(".cancel_policy_btn_pop").fadeOut("slow");
+             $(".reviews_policy_btn_pop").fadeOut("slow");
+            }, function(){
+
+            //$(".h_rule_btn_pop").fadeOut("slow");
+
+      });
+  $( ".h_rule_btn_pop" ).mouseleave(function() {
+    $(".h_rule_btn_pop").fadeOut("slow");
+  });
+
+      // Cancel Paolicy
+
+      $(".cancel_P_button").hover(function(){
+           $(".cancel_policy_btn_pop").fadeIn("slow");
+            $(".summary_pop").fadeOut("slow");
+          $(".description_pop").fadeOut("slow");
+           $(".availibility_btn_pop").fadeOut("slow");
+           $(".aminitities_btn_pop").fadeOut("slow");
+            $(".h_rule_btn_pop").fadeOut("slow");
+             $(".reviews_policy_btn_pop").fadeOut("slow");
+            }, function(){
+
+            // $(".cancel_policy_btn_pop").fadeOut("slow");
+
+      });
+  $( ".cancel_policy_btn_pop" ).mouseleave(function() {
+    $(".cancel_policy_btn_pop").fadeOut("slow");
+  });
+      // Reviews
+
+      $(".reviews_Buttons").hover(function(){
+           $(".reviews_policy_btn_pop").fadeIn("slow");
+            $(".summary_pop").fadeOut("slow");
+          $(".description_pop").fadeOut("slow");
+           $(".availibility_btn_pop").fadeOut("slow");
+           $(".aminitities_btn_pop").fadeOut("slow");
+            $(".h_rule_btn_pop").fadeOut("slow");
+             $(".cancel_policy_btn_pop").fadeOut("slow");
+            }, function(){
+
+            // $(".reviews_policy_btn_pop").fadeOut("slow");
+      });
+      $( ".reviews_policy_btn_pop" ).mouseleave(function() {
+    $(".reviews_policy_btn_pop").fadeOut("slow");
+  });
+  </script>
+
+  <script type="text/javascript">
+      $(".lui").click(function(){
+          //alert("jolo");
+      })
+      $("#lui1").click(function(){
+         // alert("BOMB");
+      })
+  </script>
+  <script type="text/javascript">
+
+
+      $(".closem3Arrow").click(function(){
+          $(".reviews_policy_btn_pop").fadeOut("slow");
+          $(".cancel_policy_btn_pop").fadeOut("slow");
+          $(".h_rule_btn_pop").fadeOut("slow");
+          $(".aminitities_btn_pop").fadeOut("slow");
+          $(".availibility_btn_pop").fadeOut("slow");
+          $(".description_pop").fadeOut("slow");
+          $(".summary_pop").fadeOut("slow");
+      });
+  </script>
+  <script type="text/javascript">
+      $(document).ready(function(){
+           $(".sidebar").mouseleave(function() {
+          //alert("he;;p")
+   $(".reviews_policy_btn_pop").fadeOut("slow");
+          $(".cancel_policy_btn_pop").fadeOut("slow");
+          $(".h_rule_btn_pop").fadeOut("slow");
+          $(".aminitities_btn_pop").fadeOut("slow");
+          $(".availibility_btn_pop").fadeOut("slow");
+          $(".description_pop").fadeOut("slow");
+          $(".summary_pop").fadeOut("slow");
+  });
+      });
+  </script>
+  <!--   ============= ! Side buttons scripts ==== -->
+
+
+  <!--  **************** COOKIES SCRIPT **************-->
+
+  <!-- <script type="text/javascript">
+      $(document).ready(function(){
+      setTimeout(function () {
+          $("#cookieConsent").fadeIn(200);
+       }, 4000);
+      $("#closeCookieConsent, .cookieConsentOK").click(function() {
+          $("#cookieConsent").fadeOut(200);
+      });
+  });
+  </script> -->
+  <!-- ******** END COOKIES SCRIPT *********** -->
+  <script language="JavaScript" type="text/javascript">
+      checkCookieExist();
+  </script>
+  <script type="text/javascript">
+      $(".ikoo").click(function(){
+              sessionStorage.clear();
+              window.location.href = '/'
+           event.preventDefault();
+      });
+  </script>
+  <script type="text/javascript">
+      $(document).ready(function(){
+
+              setTimeout(function(){
+                                   $(".arrow_box123").fadeOut(2000);
+                                   $(".arrow_box1234").fadeOut(2000);
+                                   $(".fa").removeClass("bounce");
+                                   $(".fa").removeClass("bounceX");
+                                   $(".fa").removeClass("bounceX1");
+                                  }, 10000);
+
+
+      });
+  </script>
+   <script>
+    $( function() {
+      $('#accordion').accordion({
+      active: false,
+      collapsible: true
+  });
+    } );
+    </script>
+  <script type="text/javascript">
+      $(document).ready(function(){
+          $(".sidebars").removeClass("hide-container");
+          $(".sidebars").addClass("show-container");
+      });
+
+    /*  $(window).resize(function () {
+      var height11 = $(window).height();
+      var width11 = $(window).width();
+      console.log('width is : ' + width11);
+      console.log('height is : ' + height11);
+
+      if (height11 < width11) {
+        //alert("YOKO")
+         $(".sidebar.left").trigger("sidebar:open");
+         $(".sidebar.right").trigger("sidebar:open");
+      }
+       else
+      {
+          $(".sidebar.left").trigger("sidebar:close");
+         $(".sidebar.right").trigger("sidebar:close");
+      }
+  });*/
+  </script>
+  <script type="text/javascript">
+      $(document).ready(function(){
+           if (window.matchMedia("(max-width: 767px)").matches) {
+     function readDeviceOrientation() {
+
+      if (Math.abs(window.orientation) === 90) {
+          // Landscape
+         //alert("landscape")
+         // $("#landscaperestrict").css("display","block")
+         $(".landscaperestrict").css("background","black");
+          $(".landscaperestrict").removeClass("none33");
+          $(".intro").css("display","none");
+          $("section").css("display","none");
+          $(".sidebar.right.background.sdbrwdth").css("display","none");
+          $(".sidebars > .sidebar").css("display","none");
+          $(".navbar-fixed-top").css("display","none");
+         /* $(".sidebar.right.background.sdbrwdth").css("position","fixed");
+          $(".sidebar.right.background.sdbrwdth").css("right","0");*/
+
+      } else {
+          // Portrait
+          //alert("port")
+           $(".landscaperestrict").addClass("none33");
+           $(".intro").css("display","block");
+          $("section").css("display","block");
+          $(".sidebar.right.background.sdbrwdth").css("display","block");
+          $(".sidebars > .sidebar").css("display","block");
+          $(".navbar-fixed-top").css("display","block");
+          $(".propifrmheader").css("height","100vh");
+          $("#FORGE-main-container-FORGE-instance-0").css("width","100vw");
+          $("#divMap").css("display","block");
+          $(".intro .intro-body").css("height","100vh");
+          $("#property.intro").css("display","table");
+      }
+  }
+
+  window.onorientationchange = readDeviceOrientation;
+  }
+
+
+
+
+  });
+  </script>
+
+<script type="text/javascript" src="https://nicescroll.areaaperta.com/wp-content/plugins/jnicescroll/js/jquery.nicescroll.min.js?ver=1"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".ui-accordion-content").niceScroll();
+    console.log('nicescroll');
+  });
+</script>
+  </body>
+</html>

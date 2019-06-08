@@ -1,0 +1,15 @@
+{
+    "uid": "org.forgejs.vrviewer",
+
+    "options":
+    {
+        "background": "blue"
+    },
+
+    "sources":
+    [
+        "src/main.js"
+    ],
+
+    "constructor": "ForgePlugins.VRViewer"
+}

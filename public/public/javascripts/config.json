@@ -1,0 +1,26 @@
+{
+    "story":
+    {
+        "scenes":
+        [
+            {
+                "uid": "scene-0",
+                "name": "My first scene",
+                "slug": "",
+                "description": "This is my first scene",
+
+                "media":
+                {
+                    "uid": "media-0",
+                    "type": "image",
+
+                    "source":
+                    {
+                        "format": "equi",
+                        "url": "/javascripts/scan-casa-interactive-media.jpg"
+                    }
+                }
+            }
+        ]
+    }
+}

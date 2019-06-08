@@ -1,0 +1,163 @@
+<html>
+<body>
+<div id="levels" class="blackbox"></div>
+ <div id="inserpanohotspot">  </div>
+  
+<script src="/../../javascripts/forge-lib-0.9.5/three.js/three.r86.custom.min.js"></script>
+ <script src="/../../javascripts/forge-lib-0.9.5/hammer.js/hammer.min.js"></script>
+ <script  src="/../../javascripts/forge-lib-0.9.5/forge/forge.js" ></script>
+<script>
+
+var config = {
+    "controllers":
+    {
+        "instances":
+        [
+            {
+                "uid": "pointer",
+                "type": "pointer",
+                "options":
+                {
+                    "orientation": { "drag": true },
+                    "zoom": { "toPointer": true }
+                }
+            }
+        ]
+    },
+
+    "story":
+    {
+        "uid": "multiresolution-1",
+        "name": "Multiresolution Story",
+        "slug": "multiresolution-story",
+        "description": "This project display multiresolution paronomic images",
+        "default": "scene-0",
+
+        "scenes":
+        [
+           {
+               
+                "name": "House Interior",
+                "slug": "house-interior",
+                "description": "Saint Jorioz's house interior",
+
+
+                "media":
+                {
+                    "uid": "media-1",
+                    "type": "image",
+                    "source":
+                    {
+                        "format": "cube",
+
+                        "faces":
+                        {
+                            "front": 0,
+                            "right": 1,
+                            "back": 2,
+                            "left": 3,
+                            "down": 5,
+                            "up": 4
+                        },
+
+                        "pattern": "/img/bfc7d6cbae64db2a291c62929aa4ae441530925505271-portafortunaclose_10/portafortunaclose_10/{face}/{level}/{y}_{x}.jpg",
+
+                        "levels":
+                        [
+                            {
+                                "name": "level 0",
+                                "width": 1024,
+                                "height": 1024,
+                                "tile": 512
+                            },
+
+                            {
+                                "name": "level 1",
+                                "width": 2048,
+                                "height": 2048,
+                                "tile": 512
+                            },
+
+                            {
+                                "name": "level 2",
+                                "width": 4096,
+                                "height": 4096,
+                                "tile": 512
+                            },
+                            {
+                                "name": "level 3",
+                                "width": 7680,
+                                "height": 7680,
+                                "tile": 512
+                            }
+                        ]
+                    }
+                },
+            }
+        ]
+    },
+     "plugins":
+    {
+        "prefix": "/plugins/",
+
+        "engines":
+        [
+            {
+                "uid": "org.forgejs.editor",
+                "url": "Editor/"
+            },
+
+            {
+                "uid": "org.forgejs.toolbox",
+                "url": "Toolbox/"
+            }
+        ],
+
+        "instances":
+        [
+            {
+                "uid": "editor",
+                "engine": "org.forgejs.editor"
+            },
+
+            {
+                "uid": "toolbox",
+                "engine": "org.forgejs.toolbox",
+                "options":
+                {
+                    "panels":
+                    {
+                        "view": false,
+                        "story": false,
+                        "scene" : false,
+                        "controllerPointerOrientation": false,
+                        "controllerPointerZoom": false
+                    }
+                }
+            }
+        ]
+    }
+
+}
+
+ var levelsNode = document.getElementById("levels");
+
+        var Callback = function()
+        {
+            this.update = function()
+            {
+                if (viewer.renderer.backgroundRenderer)
+                {
+                    var level = viewer.renderer.backgroundRenderer.level;
+                    levelsNode.innerHTML = "Pyramid level: " + level;
+                }
+            };
+        }
+
+
+var  viewer = new FORGE.Viewer("inserpanohotspot",config,new Callback());
+ </script>
+</body>
+
+
+</html>

@@ -1,0 +1,625 @@
+<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css">-->
+<link rel="stylesheet" type="text/css" href="http://dev.navigaze.com/stylesheets/jquery.bxslider.css">
+ <link href="/vendor/bootstrap/css/bootstrap1.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/stylesheets/jquery.bxslider-1.css">
+<style type="text/css">
+
+@media screen and (max-width: 565px)
+{
+    .modelscrollfix {
+    overflow-y: hidden !important;
+    top: -130px;
+    position: relative;
+    height: auto;
+    z-index: 999999;
+}
+.videosiframe
+{
+    height: 40vh !important
+}
+.heightformob
+{
+    height: 200px !important
+}
+}
+
+.carousel-inner>.item>img
+{
+    height: auto ;
+}
+.footer.desktop {
+    display: none;
+}
+
+div#slider
+{
+    padding: 0 !important;
+    height: 100%;
+}
+.slide {
+    width: auto !important;
+    height: auto !important;
+}
+
+.bx-viewport1 {
+    height: auto !important;
+}
+
+.bx-viewport {
+    height: 125px !important;
+}
+.thumbnail
+{
+    background-color: rgba(0,0,0,.4) !important;
+    border:0px !important;
+}
+.bx-viewport1.bx-viewport
+{
+    border:0px !important;
+}
+#bxslider-vertical .bx-wrapper .bx-controls-direction a {
+                position: absolute;
+                margin-top: -16px;
+                outline: 0;
+                width: 32px;
+                height: 32px;
+                text-indent: -9999px;
+                z-index: 9999;
+                top: auto;
+            }
+            #bxslider-horizontal .bx-wrapper .bx-prev {
+
+
+                background: url(img/prop_down.png) no-repeat;
+                -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+            }
+            #bxslider-horizontal .bx-wrapper .bx-next {
+                bottom: 1%!important;
+
+               /* background: url(https://cdn4.iconfinder.com/data/icons/miu/22/circle_arrow-down_download-24.png) no-repeat;*/
+                background: url(img/prop_down.png) no-repeat;
+                -ms-transform: rotate(270deg); /* IE 270 */
+    -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
+    transform: rotate(270deg);
+
+            }
+            #bxslider-horizontal .bx-wrapper .bx-next:hover{
+               /* background:url(https://cdn4.iconfinder.com/data/icons/miu/22/circle_arrow-down_download-24.png) no-repeat;*/
+                background: url(img/prop_down.png) no-repeat;
+                -ms-transform: rotate(270deg); /* IE 27 */
+    -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
+    transform: rotate(270deg);
+            }
+            #bxslider-horizontal .bx-wrapper .bx-viewport,#bxslider-horizontal .bx-wrapper .bx-viewport{
+                -moz-box-shadow: none;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                border: 1px solid gray;
+                border-radius: 5px;
+                left: 0px!important;
+
+    padding: 5px;
+                background: transparent;
+                -webkit-transform: translatez(0);
+                -moz-transform: translatez(0);
+                -ms-transform: translatez(0);
+                -o-transform: translatez(0);
+                transform: translatez(0);
+            }
+ #bxslider-horizontal .bx-wrapper{
+                max-width: 678px!important;
+            }
+
+
+.container1 , div#main_area, .row.n1,div#myCarousel,.carousel-inner,.x1,.x11{
+    /*display: block;*/
+    height: 100vh !important;
+    width: auto;
+    margin: 0 auto;
+    padding: 0 !important;
+}
+
+div#carousel-bounding-box
+{
+    width: 100%;
+    margin: 0 auto;
+}
+@media screen and (max-width: 991px)
+{
+    section#property
+    {
+        background-color: rgba(0,0,0,0.8);
+    }
+        .carousel-control {
+            top: 0;
+            color: #000;
+        }
+
+        .container1 , div#main_area, .row.n1,div#slider,div#carousel-bounding-box,div#myCarousel,.carousel-inner,.x1,.x11{
+    /*display: block;*/
+    height:auto !important;
+    width: auto;
+    margin: 0 auto;
+    padding: 0 !important;
+}
+}
+div#slider-thumbs {
+    position: absolute;
+    bottom: 1%;
+    margin: 0 auto;
+    width: 100%;
+
+}
+
+#bxslider-horizontal .bx-wrapper
+{
+    margin: 0 auto !important;
+        background-color: rgba(0,0,0,0.6);
+        opacity: 0.6;
+}
+#bxslider-horizontal .bx-wrapper:hover
+{
+    opacity: 1;
+}
+@media screen and (max-width: 1160px)
+{
+    .x11{
+        height: auto !important;
+    }
+
+    .carousel-control {
+    /*top: -38%;*/
+    color: #000;
+    }
+    div#slider-thumbs {
+    position: absolute;
+
+    margin: 0 auto;
+
+}
+}
+.carousel-control.right , .carousel-control.left
+{
+    background-image:  none !important;
+}
+
+
+@media screen and (min-width: 1160px)
+{
+    div#carousel-bounding-box
+    {
+        /*height: 766px !important;*/
+    }
+}
+a.bx-next
+{
+    margin-top: -30px !important;
+}
+
+ @media screen and (max-width: 1100px)
+ {
+    div#slider-thumbs
+    {
+
+    }
+ }
+
+ @media screen and (min-width: 1160px)
+ {
+    div#slider-thumbs {
+    position: absolute;
+
+    margin: 0 auto;
+
+}
+ }
+@media screen and (min-width: 1280px)
+{
+                div#slider-thumbs {
+                position: absolute;
+
+                margin: 0 auto;
+
+            }
+
+                         a.left.carousel-control {
+                                        left: 12%;
+                                        color: #fff;
+                                    }
+                          a.right.carousel-control {
+                        color: #fff;
+                        right: 12%;
+                    }
+                    .sidebars > .sidebar {
+
+                            border: 0px solid #d4d4d4;
+                        }
+                        .bx-viewport
+                        {
+                             border: 1px solid #d4d4d4;
+                        }
+                        .asidebarcusrson
+                        {
+                            border: 0px solid #d4d4d4;
+                        }
+}
+ .posterplay {
+    position: absolute;
+    top: 45%;
+    z-index: 9999999999999999999999999999999999;
+    width: 100px;
+    height: 100px;
+
+    right: 45%;
+}
+
+/** for Heigher Resolution **/
+
+
+.carousel-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.8);
+
+}
+
+div#myCarousel
+ {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.9);
+    background: url(/images/ListpropBG.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+/** End heigher Resolution **/
+
+
+.bx-wrapper img
+{
+    cursor: pointer;
+}
+
+*::-webkit-media-controls-panel {
+   background-color: black !important;
+}
+
+@media screen and (min-height: 900px)
+{
+    div#carousel-bounding-box
+    {
+        height: 100% !important;
+    }
+}
+</style>
+
+<div class="container1">
+        <div id="main_area">
+                <!-- Slider -->
+                <div class="row n1" style="background: rgba(0,0,0,0.9);">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="slider">
+                        <!-- Top part of the slider -->
+                        <div class="row n1">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="carousel-bounding-box">
+                                <div class="carousel slide" id="myCarousel">
+                                    <!-- Carousel items -->
+
+                                    <div class="carousel-inner">
+                                     <!--
+                                        <div class="active item x1" data-slide-number="1">
+                                        <img class="x11" src="<%=propertyData.VRFrontThumbnail[1]%>"></div>
+                                       -->
+                                       <%for(var i=1;i< propertyData.VRFrontThumbnail.length;i++){%>
+                                       <div class="<%if(i==1){%> active item x1 <%}else{%> item x1 <%}%>" data-slide-number="<%=i%>">
+                                        <img class="x11 " src="<%=propertyData.VRFrontThumbnail[i]%>">
+                                        </div>
+                               <%if(propertyData.VRFrontThumbnail.length -1  == i){ %>
+                                  <%  if(propertyData.VideosUrl){  %>
+                                         <div  class="<%if(i==1){%> active item x1 <%}else{%> item x1 <%}%> heightformob" style="overflow: visible;width: 337px;"  >
+
+
+                                             <a style="    margin-bottom: 0px !important;left: 42%; position: absolute;top: 40%;" data-toggle="modal" data-target="#myModalyoutube" style="margin-bottom: 0px !important">
+                                             <img style="width:150px; height: 100px;" src="/images/Play_youtube.png">
+
+                                             </a>
+
+
+                                             </div>
+
+                                   <% }}}%>
+
+                                    </div><!-- Carousel nav -->
+
+                                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
+                                    </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div><!--/Slider-->
+
+
+                <div class="row hidden-xs" id="slider-thumbs">
+                        <!-- Bottom switcher of slider -->
+                        <div id="bxslider-horizontal">
+                        <div class="bxslider">
+
+
+
+
+                        <%for(var i=1;i< propertyData.VRFrontThumbnail.length;i++){%>
+
+
+
+
+                              <div class="slide">
+                                <a class="thumbnail" id="carousel-selector-<%=i%>" style="margin-bottom: 0px !important">
+                                    <img class=""  style="width:150px; height: 100px; " src="<%=propertyData.VRFrontThumbnail[i]%>"></a>
+                            </div>
+                            <% if(propertyData.VRFrontThumbnail.length -1  == i){ %>
+                                  <%if(propertyData.VideosUrl){%>
+                                    <div class="slide">
+                                             <a data-toggle="modal" data-target="#myModalyoutube" style="margin-bottom: 0px !important">
+                                             <img style="width:150px; height: 100px;" src="/images/Play_youtube.png">
+
+                                             </a>
+                                             <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalyoutube">Open Modal</button> -->
+                                             </div>
+                                   <% }}}%>
+
+
+
+
+
+                           <!-- -->
+                       </div>
+                       </div>
+
+                      <!--   <div class="bx-controls bx-has-controls-direction"><div class="bx-controls-direction"><a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a></div></div>   -->
+                </div>
+        </div>
+</div>
+
+
+
+
+
+  <!-- Modal -->
+                                          <div class="modal fade modelscrollfix" id="myModalyoutube" role="dialog" style="width: 100%;">
+                                            <div class="modal-dialog" style="width: 100%;">
+
+                                              <!-- Modal content-->
+                                              <div class="modal-content" style="width: 80%;display: flex; margin: 0 auto; padding: 20px 20px; align-items: center;">
+                                                    <div class="">
+                                                      <button type="button" class="close" data-dismiss="modal">×</button>
+                                                        <!-- h4 class="modal-title">CASA DEL OSO</h4> -->
+                                                     </div>
+
+                                                <div class="modal-body" style="width: 100%;">
+                                                  <iframe style="width: 100%; height: 80vh;"  class="videosiframe" src="<%=propertyData.VideosUrl%>" scrolling="no" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+
+                                              </div>
+
+                                            </div>
+                                          </div>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.bxslider.min.js"></script>
+ -->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
+<script src="http://dev.navigaze.com/vendor/jquery/jquery.min.js"></script>
+  <script src="http://dev.navigaze.com/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://dev.navigaze.com/js/jquery.bxslider.min-1.js"></script>
+<script type="text/javascript">
+     $("#dtllink").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#details").offset().top},
+        'slow');
+});
+
+
+ $("#proplink").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#property").offset().top},
+        'slow');
+});
+  jQuery(document).ready(function($) {
+
+        $('#myCarousel').carousel({
+                interval: 0
+        });
+
+        //$('#carousel-text').html($('#slide-content-0').html());
+
+        //Handles the carousel thumbnails
+       $('[id^=carousel-selector-]').click( function(){
+            var id = this.id.substr(this.id.lastIndexOf("-") + 1);
+            var id = parseInt(id);
+            $('#myCarousel').carousel(id -1);
+        });
+
+
+        // When the carousel slides, auto update the text
+        $('#myCarousel').on('slid.bs.carousel', function (e) {
+                 var id = $('.item.active').data('slide-number');
+                $('#carousel-text').html($('#slide-content-'+id).html());
+        });
+        $('#bxslider-horizontal .bxslider').bxSlider({
+                    mode: 'horizontal',
+                    infiniteLoop: false,
+                    pager:false,
+                    slideWidth: 10,
+                    maxSlides: 4,
+                    minSlides: 1,
+                    slideMargin: 10,
+                    controls: true,
+                    slidemove:1,
+                });
+});
+
+
+   $(document).ready(function() {
+    var vedio = "<%=propertyData.VideosUrl%>";
+    console.log("vedio url")
+    console.log(vedio)
+               /* $('#bxslider-vertical .bxslider').bxSlider({
+                    mode: 'vertical',
+                    infiniteLoop: false,
+                    pager:false,
+                    slideWidth: 200,
+                    maxSlides: 3,
+                    minSlides: 3,
+                    slideMargin: 10
+                });*/
+
+                 /*$('#bxslider-horizontal .bxslider').bxSlider({
+                    mode: 'horizontal',
+                    infiniteLoop: false,
+                    pager:false,
+                    slideWidth: 200,
+                    maxSlides: 4,
+                    minSlides: 2,
+                    slideMargin: 10
+                });*/
+
+
+
+
+    });
+
+</script>
+<!-- <script type="text/javascript">
+
+    $('.video').click(function(){
+        this.paused?this.play():this.pause();
+            $("#play2").fadeToggle();
+    });
+    $('.videomov').click(function(){
+        this.paused?this.play():this.pause();
+            $("#play2mov").fadeToggle();
+    });
+    $('.videowmv').click(function(){
+        this.paused?this.play():this.pause();
+            $("#play2wmv").fadeToggle();
+    });
+</script>
+<script type="text/javascript">
+    $(".rukja").click(function(){
+
+       var video = document.getElementById('myVideo');
+        var videomov = document.getElementById('myVideomov');
+         var videowmv = document.getElementById('myVideowmv');
+                    video.pause();
+                    $("#play2").fadeToggle();
+                    videomov.pause();
+                     $("#play2mov").fadeToggle();
+                    videowmv.pause();
+
+
+                $("#play2wmv").fadeToggle();
+ });
+
+
+
+     $(".rukja1").click(function(){
+        //alert("ll")
+       var video1 = document.getElementById('myVideo');
+        var videomov1 = document.getElementById('myVideomov');
+         var videowmv1 = document.getElementById('myVideowmv');
+                    video1.pause();
+                    //$("#play2").fadeToggle();
+                    videomov1.pause();
+                     //$("#play2mov").fadeToggle();
+                    videowmv1.pause();
+
+
+               // $("#play2wmv").fadeToggle();
+ });
+</script>
+<script type="text/javascript">
+
+var vid = document.getElementById("myVideo");
+$("#play2").hide();
+function playVid() {
+    vid.play();
+    $("#play1").fadeOut();
+    $("#play2").fadeIn();
+    $("#play2").fadeOut(1000);
+
+
+
+}
+
+function pauseVid() {
+    vid.pause();
+    $("#play2").fadeout();
+    $("#play1").fadeIn();
+    $("#play1").fadeOut(500);
+
+
+}
+</script>
+<script type="text/javascript">
+
+var vidmov = document.getElementById("myVideomov");
+$("#play2mov").hide();
+function playVidmov() {
+    vidmov.play();
+    $("#play1mov").fadeOut();
+    $("#play2mov").fadeIn();
+    $("#play2mov").fadeOut(1000);
+
+
+
+}
+
+function pauseVidmov() {
+    vidmov.pause();
+    $("#play2mov").fadeout();
+    $("#play1mov").fadeIn();
+    $("#play1mov").fadeOut(500);
+
+
+}
+</script>
+<script type="text/javascript">
+
+var vidwmv = document.getElementById("myVideowmv");
+$("#play2wmv").hide();
+function playVidwmv() {
+    vidwmv.play();
+    $("#play1wmv").fadeOut();
+    $("#play2wmv").fadeIn();
+    $("#play2wmv").fadeOut(1000);
+
+
+
+}
+
+function pauseVidwmv() {
+    vidwmv.pause();
+    $("#play2wmv").fadeout();
+    $("#play1wmv").fadeIn();
+    $("#play1wmv").fadeOut(500);
+
+
+}
+</script> -->
